@@ -3,25 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="WowMakeup - Profesjonalny makijaż mobilny i usługi kosmetologiczne. Karolina Kowalewicz, licencjonowany kosmetolog i makijażystka. Makijaż ślubny, okolicznościowy i kolorowy z dojazdem do klienta.">
-    <meta name="keywords" content="makijaż mobilny, makijaż ślubny, makijażystka, kosmetolog, makijaż okolicznościowy, makijaż kolorowy, wowmakeup, Karolina Kowalewicz">
+    <meta name="description" content="WowMakeup – makijaż mobilny w Starogardzie Gdańskim, Skarszewach i Tczewie. Karolina Kowalewicz – makijaż ślubny, okolicznościowy i kolorowy z dojazdem.">
+    <meta name="keywords" content="makijaż mobilny, makijaż ślubny, makijażystka, WowMakeup, Karolina Kowalewicz, Starogard Gdański, Skarszewy, Tczew">
     <meta name="author" content="Karolina Kowalewicz">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="Polish">
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="WowMakeup - Profesjonalny Makijaż Mobilny | Karolina Kowalewicz">
-    <meta property="og:description" content="Profesjonalny makijaż mobilny i usługi kosmetologiczne. Makijaż ślubny, okolicznościowy i kolorowy z dojazdem do klienta.">
+    <meta property="og:title" content="WowMakeup – Makijaż Mobilny Starogard Gdański | Karolina Kowalewicz">
+    <meta property="og:description" content="Makijaż mobilny i ślubny w Starogardzie Gdańskim, Skarszewach i Tczewie. Dojazd do klienta.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wowmakeup.pl">
     <meta property="og:image" content="https://wowmakeup.pl/assets/profilowe-large.webp">
     <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="WowMakeup">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="WowMakeup - Profesjonalny Makijaż Mobilny">
-    <meta name="twitter:description" content="Profesjonalny makijaż mobilny i usługi kosmetologiczne z dojazdem do klienta.">
+    <meta name="twitter:title" content="WowMakeup – Makijaż Mobilny Starogard Gdański | Karolina Kowalewicz">
+    <meta name="twitter:description" content="Profesjonalny makijaż mobilny z dojazdem do klienta.">
     <meta name="twitter:image" content="https://wowmakeup.pl/assets/profilowe-large.webp">
+
+    <meta name="geo.region" content="PL-PM">
+    <meta name="geo.placename" content="Starogard Gdański">
+    <meta name="geo.position" content="53.966;18.530">
+    <meta name="ICBM" content="53.966, 18.530">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://wowmakeup.pl">
@@ -33,7 +38,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <title>WowMakeup - Profesjonalny Makijaż Mobilny | Karolina Kowalewicz</title>
+    <!-- Preconnect to CDN for better performance -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+
+    <title>WowMakeup - Makijaż Mobilny | Karolina Kowalewicz</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -78,7 +87,7 @@
         "@context": "https://schema.org",
         "@type": "BeautySalon",
         "name": "WowMakeup",
-        "description": "Profesjonalny makijaż mobilny i usługi kosmetologiczne",
+        "description": "Profesjonalny makijaż mobilny i usługi kosmetologiczne w Starogardzie Gdańskim, Tczewie i okolicach.",
         "url": "https://wowmakeup.pl",
         "logo": "https://wowmakeup.pl/logo.svg",
         "image": "https://wowmakeup.pl/assets/profilowe-large.webp",
@@ -86,17 +95,19 @@
         "email": "kowalewicz.karolina1997@gmail.com",
         "address": {
             "@type": "PostalAddress",
-            "addressCountry": "PL"
+            "addressCountry": "PL",
+            "addressLocality": "Starogard Gdański",
+            "addressRegion": "Pomorskie"
         },
-        "sameAs": [
-            "https://www.instagram.com/wowmakeup.kowalewicz",
-            "https://www.facebook.com/wowmakeupkowalewicz"
-        ],
         "priceRange": "$$",
         "serviceArea": {
             "@type": "GeoCircle",
             "description": "Usługi mobilne z dojazdem do klienta"
-        }
+        },
+        "sameAs": [
+            "https://www.instagram.com/wowmakeup.kowalewicz",
+            "https://www.facebook.com/wowmakeupkowalewicz"
+        ]
     }
     </script>
 
