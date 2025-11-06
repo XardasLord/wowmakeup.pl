@@ -6,19 +6,19 @@
     </linearGradient>
   </defs>
 
-  <!-- Background Circle -->
-  <circle cx="100" cy="100" r="95" fill="url(#gradient)" />
+  <!-- Background Circle with gradient border -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="url(#gradient)" stroke-width="3" />
 
   <!-- Inner Circle -->
-  <circle cx="100" cy="100" r="85" fill="none" stroke="white" stroke-width="2" opacity="0.3" />
+  <circle cx="100" cy="100" r="85" fill="none" stroke="url(#gradient)" stroke-width="2" opacity="0.5" />
 
   <!-- Letter W -->
-  <text x="100" y="140" font-family="Playfair Display, serif" font-size="110" font-weight="bold" fill="white" text-anchor="middle">W</text>
+  <text x="100" y="140" font-family="Playfair Display, serif" font-size="110" font-weight="bold" fill="url(#gradient)" text-anchor="middle">W</text>
 
   <!-- Small decorative elements -->
-  <circle cx="60" cy="50" r="3" fill="white" opacity="0.6" />
-  <circle cx="140" cy="50" r="3" fill="white" opacity="0.6" />
-  <circle cx="60" cy="150" r="3" fill="white" opacity="0.6" />
-  <circle cx="140" cy="150" r="3" fill="white" opacity="0.6" />
+  <circle cx="60" cy="50" r="3" fill="url(#gradient)" opacity="0.8" />
+  <circle cx="140" cy="50" r="3" fill="url(#gradient)" opacity="0.8" />
+  <circle cx="60" cy="150" r="3" fill="url(#gradient)" opacity="0.8" />
+  <circle cx="140" cy="150" r="3" fill="url(#gradient)" opacity="0.8" />
 </svg>
 
