@@ -25,8 +25,8 @@
 
     <meta name="geo.region" content="PL-PM">
     <meta name="geo.placename" content="Starogard Gdański">
-    <meta name="geo.position" content="53.966;18.530">
-    <meta name="ICBM" content="53.966, 18.530">
+    <meta name="geo.position" content="54.074031;18.471619">
+    <meta name="ICBM" content="54.074031, 18.471619">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://wowmakeup.pl">
@@ -255,6 +255,57 @@
                 max-width: 100%;
             }
         }
+
+        /* Przycisk powrotu do góry */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            background: linear-gradient(135deg, #c4a87c 0%, #d4c0a4 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(196, 168, 124, 0.4);
+            z-index: 1000;
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #back-to-top:hover {
+            background: linear-gradient(135deg, #b39463 0%, #c4a87c 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(196, 168, 124, 0.5);
+        }
+
+        #back-to-top svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            #back-to-top {
+                width: 3rem;
+                height: 3rem;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+
+            #back-to-top svg {
+                width: 1.25rem;
+                height: 1.25rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-beige-50 text-gray-800 scroll-smooth">
@@ -338,6 +389,72 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="py-12 md:py-16 bg-white border-t border-b border-beige-200">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+                    <svg class="w-8 h-8 md:w-10 md:h-10 inline-block mr-2 text-beige-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    Obszar działania
+                </h2>
+                <p class="text-gray-600 mb-8">Dojazd do klienta na terenie:</p>
+
+                <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
+                    <!-- Gdańsk -->
+                    <div class="inline-flex items-center gap-2 bg-gradient-to-r from-beige-100 to-beige-200 px-5 md:px-6 py-3 md:py-4 rounded-full shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-beige-300">
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-beige-700 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span class="font-semibold text-gray-800 text-base md:text-lg whitespace-nowrap">Gdańsk</span>
+                    </div>
+
+                    <!-- Starogard Gdański -->
+                    <div class="inline-flex items-center gap-2 bg-gradient-to-r from-beige-100 to-beige-200 px-5 md:px-6 py-3 md:py-4 rounded-full shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-beige-300">
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-beige-700 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span class="font-semibold text-gray-800 text-base md:text-lg whitespace-nowrap">Starogard Gdański</span>
+                    </div>
+
+                    <!-- Tczew -->
+                    <div class="inline-flex items-center gap-2 bg-gradient-to-r from-beige-100 to-beige-200 px-5 md:px-6 py-3 md:py-4 rounded-full shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-beige-300">
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-beige-700 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span class="font-semibold text-gray-800 text-base md:text-lg whitespace-nowrap">Tczew</span>
+                    </div>
+
+                    <!-- Skarszewy -->
+                    <div class="inline-flex items-center gap-2 bg-gradient-to-r from-beige-100 to-beige-200 px-5 md:px-6 py-3 md:py-4 rounded-full shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-beige-300">
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-beige-700 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span class="font-semibold text-gray-800 text-base md:text-lg whitespace-nowrap">Skarszewy</span>
+                    </div>
+
+                    <!-- Okolice -->
+                    <div class="inline-flex items-center gap-2 bg-gradient-to-r from-rose-50 to-rose-100 px-5 md:px-6 py-3 md:py-4 rounded-full shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-rose-200">
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-rose-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                        </svg>
+                        <span class="font-semibold text-gray-800 text-base md:text-lg whitespace-nowrap">Okolice</span>
+                    </div>
+                </div>
+
+                <p class="text-gray-600 text-sm md:text-base mt-6 italic">
+                    💼 Przyjadę do Ciebie w wybrane miejsce – komfort i wygoda we własnym domu!
+                </p>
             </div>
         </div>
     </section>
@@ -722,6 +839,13 @@
         </div>
     </footer>
 
+    <!-- Przycisk powrotu do góry -->
+    <button id="back-to-top" aria-label="Powrót do góry strony" title="Powrót do góry">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
     <!-- JavaScript -->
     <script>
         // Mobile Menu Toggle
@@ -803,6 +927,26 @@
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
+        });
+
+        // Przycisk powrotu do góry
+        const backToTopButton = document.getElementById('back-to-top');
+
+        // Pokaż/ukryj przycisk przy przewijaniu
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        // Przewiń do góry po kliknięciu
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
