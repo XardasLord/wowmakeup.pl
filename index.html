@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="WowMakeup – makijaż mobilny w Starogardzie Gdańskim, Skarszewach i Tczewie. Karolina Kowalewicz – makijaż ślubny, okolicznościowy i kolorowy z dojazdem.">
-    <meta name="keywords" content="makijaż mobilny, makijaż ślubny, makijażystka, WowMakeup, Karolina Kowalewicz, Starogard Gdański, Skarszewy, Tczew">
+    <meta name="description" content="WOW Makeup – makijaż mobilny w Starogardzie Gdańskim, Skarszewach i Tczewie. Karolina Kowalewicz – makijaż ślubny, okolicznościowy i kolorowy z dojazdem.">
+    <meta name="keywords" content="makijaż mobilny, makijaż ślubny, makijaż wieczorowy, makijażystka, WowMakeup, WOW Makeup, Karolina Kowalewicz, Starogard Gdański, Skarszewy, Tczew">
     <meta name="author" content="Karolina Kowalewicz">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="WowMakeup – Makijaż Mobilny Starogard Gdański | Karolina Kowalewicz">
+    <meta property="og:title" content="WOW Makeup – makijaże mobilne Starogard Gdański | Karolina Kowalewicz">
     <meta property="og:description" content="Makijaż mobilny i ślubny w Starogardzie Gdańskim, Skarszewach i Tczewie. Dojazd do klienta.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wowmakeup.pl">
     <meta property="og:image" content="https://wowmakeup.pl/assets/profilowe-large.webp">
     <meta property="og:locale" content="pl_PL">
-    <meta property="og:site_name" content="WowMakeup">
+    <meta property="og:site_name" content="WOW Makeup">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
@@ -45,7 +45,7 @@
     <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin />
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
 
-    <title>WowMakeup - Makijaż Mobilny | Karolina Kowalewicz</title>
+    <title>WOW Makeup - makijaże mobilne | Karolina Kowalewicz</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -89,7 +89,7 @@
     {
         "@context": "https://schema.org",
         "@type": "BeautySalon",
-        "name": "WowMakeup",
+        "name": "WOW Makeup",
         "description": "Profesjonalny makijaż mobilny i usługi kosmetologiczne w Starogardzie Gdańskim, Tczewie i okolicach.",
         "url": "https://wowmakeup.pl",
         "logo": "https://wowmakeup.pl/logo.svg",
@@ -265,6 +265,7 @@
             height: 3.5rem;
             background: linear-gradient(135deg, #c4a87c 0%, #d4c0a4 100%);
             color: white;
+            border: none;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -272,7 +273,7 @@
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
             box-shadow: 0 4px 15px rgba(196, 168, 124, 0.4);
             z-index: 1000;
         }
@@ -324,7 +325,7 @@
                         <circle cx="50" cy="50" r="45" fill="url(#logoGradient)"/>
                         <text x="50" y="65" font-family="Playfair Display, serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">W</text>
                     </svg>
-                    <span class="text-2xl font-bold text-gray-800" style="font-family: 'Playfair Display', serif;">WowMakeup</span>
+                    <span class="text-2xl font-bold text-gray-800" style="font-family: 'Playfair Display', serif;">WOW Makeup</span>
                 </a>
 
                 <!-- Desktop Menu -->
@@ -810,7 +811,7 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="text-center md:text-left">
-                    <h3 class="text-2xl font-bold mb-2" style="font-family: 'Playfair Display', serif;">WowMakeup</h3>
+                    <h3 class="text-2xl font-bold mb-2" style="font-family: 'Playfair Display', serif;">WOW Makeup</h3>
                     <p class="text-gray-400">Karolina Kowalewicz - Profesjonalny makijaż mobilny</p>
                 </div>
 
@@ -834,7 +835,7 @@
             </div>
 
             <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
-                <p>&copy; 2025 WowMakeup - Karolina Kowalewicz. Wszelkie prawa zastrzeżone.</p>
+                <p>&copy; 2025 WOW Makeup - Karolina Kowalewicz. Wszelkie prawa zastrzeżone.</p>
             </div>
         </div>
     </footer>
@@ -932,22 +933,30 @@
         // Przycisk powrotu do góry
         const backToTopButton = document.getElementById('back-to-top');
 
-        // Pokaż/ukryj przycisk przy przewijaniu
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        });
+        if (backToTopButton) {
+            // Funkcja do pokazywania/ukrywania przycisku
+            const toggleBackToTop = () => {
+                if (window.pageYOffset > 100) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            };
 
-        // Przewiń do góry po kliknięciu
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            // Sprawdź pozycję przy załadowaniu
+            toggleBackToTop();
+
+            // Pokaż/ukryj przycisk przy przewijaniu
+            window.addEventListener('scroll', toggleBackToTop);
+
+            // Przewiń do góry po kliknięciu
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
-        });
+        }
     </script>
 </body>
 </html>
