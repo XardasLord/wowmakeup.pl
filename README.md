@@ -20,9 +20,10 @@ Strona internetowa dla Karoliny Kowalewicz, profesjonalnej makijażystki i kosme
 - ✅ Zoptymalizowana pod SEO
 - ✅ Szybkie ładowanie strony
 - ✅ Gallery portfolio z realizacjami
+- ✅ **Elegancka sekcja cennika z kartami cen** 💰
 - ✅ Formularz kontaktowy
 - ✅ Integracja z Google Analytics
-- ✅ Schema.org structured data
+- ✅ Schema.org structured data (w tym ceny usług)
 - ✅ Open Graph meta tags
 - ✅ Sitemap.xml i robots.txt
 - ✅ PWA ready (site.webmanifest)
