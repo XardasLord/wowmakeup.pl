@@ -32,50 +32,21 @@
     <link rel="canonical" href="https://wowmakeup.pl">
 
     <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-
-    <!-- Preconnect to CDN for better performance -->
-    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin />
-    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="shortcut icon" href="favicon.ico" />
 
     <title>WOW Makeup - makijaże mobilne | Karolina Kowalewicz</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        beige: {
-                            50: '#fdfbf7',
-                            100: '#f8f4ee',
-                            200: '#f0e8dc',
-                            300: '#e6d7c3',
-                            400: '#d4c0a4',
-                            500: '#c4a87c',
-                            600: '#b39463',
-                            700: '#9d7e50',
-                        },
-                        rose: {
-                            50: '#fff5f5',
-                            100: '#ffe8e8',
-                            200: '#ffd1d1',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Tailwind CSS (skompilowany statycznie z src/input.css -> tailwind.css; regeneracja: npm run build:css) -->
+    <link rel="stylesheet" href="tailwind.css" />
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4H3QQHY4KH"></script>
@@ -285,9 +256,8 @@
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 100%;
-        }
+        /* UWAGA: nie dodawaj tu `.container { max-width: 100% }` - nadpisuje limity
+           szerokosci Tailwinda i rozciaga naglowek/stopke na cala szerokosc. */
 
         img {
             max-width: 100%;
@@ -893,7 +863,7 @@
                             </svg>
                             <div>
                                 <p class="font-semibold mb-1">Dojazd gratis</p>
-                                <p class="text-sm">Do 15 km od Skarszew bezpłatnie. Powyżej: 2 zł/km</p>
+                                <p class="text-sm">Do 15 km od Skarszew bezpłatnie. Powyżej: 2,5 zł/km</p>
                             </div>
                         </div>
                         <div class="flex items-start space-x-3">
@@ -1235,7 +1205,7 @@
             </div>
 
             <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
-                <p>&copy; 2025 WOW Makeup - Karolina Kowalewicz. Wszelkie prawa zastrzeżone.</p>
+                <p>&copy; <span id="footer-year">2026</span> WOW Makeup - Karolina Kowalewicz. Wszelkie prawa zastrzeżone.</p>
             </div>
         </div>
     </footer>
@@ -1249,6 +1219,12 @@
 
     <!-- JavaScript -->
     <script>
+        // Aktualny rok w stopce (nie wymaga corocznej edycji)
+        const footerYear = document.getElementById('footer-year');
+        if (footerYear) {
+            footerYear.textContent = new Date().getFullYear();
+        }
+
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');

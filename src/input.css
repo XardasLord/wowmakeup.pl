@@ -1,0 +1,5 @@
+/* Plik wejsciowy Tailwind. Kompilowany do ../tailwind.css przez `npm run build:css`. */
+/* Nie edytuj tailwind.css recznie - to plik generowany. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

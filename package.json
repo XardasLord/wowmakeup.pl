@@ -1,0 +1,14 @@
+{
+  "name": "wowmakeup-pl",
+  "version": "1.0.0",
+  "description": "Landing page WOW Makeup - makijaz mobilny Karolina Kowalewicz",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./tailwind.css --watch",
+    "serve": "npx --yes serve@14 ."
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

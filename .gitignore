@@ -20,3 +20,7 @@ __pycache__/
 *.pyc
 *.pyo
 
+# Node / Tailwind build
+# UWAGA: tailwind.css NIE jest ignorowany - to skompilowany plik serwowany na produkcji (GitHub Pages).
+node_modules/
+
