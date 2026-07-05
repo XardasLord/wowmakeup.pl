@@ -1144,6 +1144,10 @@
                     <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 md:p-8">
                         <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Napisz do mnie</h3>
                         <form id="contact-form" class="space-y-4">
+                            <!-- Honeypot antyspamowy: ukryty przed użytkownikiem, wypełniają go boty -->
+                            <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+                            <!-- Pozostałe pola FormSubmit (_subject, _replyto, _template, etykiety) ustawiane w JS przy wysyłce -->
+
                             <div>
                                 <label for="name" class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">Imię i nazwisko</label>
                                 <input type="text" id="name" name="name" required class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:border-beige-500 focus:ring-2 focus:ring-beige-200 focus:outline-none transition text-sm sm:text-base">
@@ -1164,9 +1168,10 @@
                                 <textarea id="message" name="message" rows="4" required class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:border-beige-500 focus:ring-2 focus:ring-beige-200 focus:outline-none transition text-sm sm:text-base"></textarea>
                             </div>
 
-                            <button type="submit" class="w-full btn-primary text-white font-semibold px-6 sm:px-8 py-3 rounded-full transition hover-scale text-sm sm:text-base">
+                            <button type="submit" id="contact-submit" class="w-full btn-primary text-white font-semibold px-6 sm:px-8 py-3 rounded-full transition hover-scale text-sm sm:text-base">
                                 Wyślij wiadomość
                             </button>
+                            <p id="form-status" role="status" aria-live="polite" class="hidden text-center text-sm font-semibold mt-2"></p>
                         </form>
                     </div>
                 </div>
@@ -1256,31 +1261,80 @@
             });
         });
 
-        // Contact Form Handler
+        // Contact Form Handler – wysyłka przez FormSubmit (AJAX, bez przeładowania strony)
         const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', (e) => {
+        const formStatus = document.getElementById('form-status');
+        const submitBtn = document.getElementById('contact-submit');
+        const FORM_ENDPOINT = 'https://formsubmit.co/ajax/kowalewicz.karolina1997@gmail.com';
+        const submitBtnLabel = submitBtn ? submitBtn.textContent.trim() : 'Wyślij wiadomość';
+
+        const setFormStatus = (message, ok) => {
+            if (!formStatus) return;
+            formStatus.textContent = message;
+            formStatus.classList.remove('hidden');
+            formStatus.style.color = ok ? '#15803d' : '#b91c1c';
+        };
+
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const formData = new FormData(contactForm);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const phone = formData.get('phone');
-            const message = formData.get('message');
+            // Honeypot: jeśli wypełniony, to bot – nic nie wysyłamy
+            const honey = contactForm.querySelector('[name="_honey"]');
+            if (honey && honey.value) return;
 
-            // Create mailto link
-            const subject = encodeURIComponent(`Zapytanie od ${name} - wowmakeup.pl`);
-            const body = encodeURIComponent(
-                `Imię i nazwisko: ${name}\n` +
-                `Email: ${email}\n` +
-                `Telefon: ${phone || 'Nie podano'}\n\n` +
-                `Wiadomość:\n${message}`
-            );
+            const fd = new FormData(contactForm);
+            const nazwa = (fd.get('name') || '').toString().trim();
+            const emailKlientki = (fd.get('email') || '').toString().trim();
+            const telefon = (fd.get('phone') || '').toString().trim();
 
-            window.location.href = `mailto:kowalewicz.karolina1997@gmail.com?subject=${subject}&body=${body}`;
+            // Payload z polskimi etykietami – tak wyglądają pola w mailu do Karoliny.
+            // UWAGA: pole musi nazywać się dokładnie "email" – FormSubmit z niego ustawia
+            // Reply-To (klik "Odpowiedz" kieruje na adres klientki). Zmiana nazwy tego pola psuje Reply-To.
+            const payload = {
+                'Imię i nazwisko': nazwa,
+                email: emailKlientki,
+                'Telefon': telefon || 'nie podano',
+                'Wiadomość': (fd.get('message') || '').toString().trim(),
+                // Pola konfiguracyjne FormSubmit:
+                _subject: `Nowe zapytanie ze strony wowmakeup.pl: ${nazwa || 'brak imienia'}`,
+                _replyto: emailKlientki, // dodatkowo, wspiera Reply-To na adres klientki
+                _cc: 'kowalewicz.pawel@gmail.com', // widoczna kopia (DW) na Twój adres
+                _template: 'table',
+                _captcha: 'false',
+                _honey: (honey && honey.value) || ''
+            };
 
-            // Reset form
-            contactForm.reset();
-            alert('Dziękuję za wiadomość! Przekierowuję do Twojego klienta email...');
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.6';
+            submitBtn.style.cursor = 'wait';
+            submitBtn.textContent = 'Wysyłanie...';
+            if (formStatus) formStatus.classList.add('hidden');
+
+            try {
+                const res = await fetch(FORM_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json().catch(() => ({}));
+
+                if (res.ok && (data.success === 'true' || data.success === true)) {
+                    setFormStatus('Dziękuję! Wiadomość została wysłana. Odezwę się najszybciej, jak to możliwe. ✨', true);
+                    contactForm.reset();
+                } else {
+                    throw new Error(data.message || 'Błąd wysyłki');
+                }
+            } catch (err) {
+                setFormStatus('Nie udało się wysłać wiadomości. Napisz proszę bezpośrednio na kowalewicz.karolina1997@gmail.com', false);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '';
+                submitBtn.style.cursor = '';
+                submitBtn.textContent = submitBtnLabel;
+            }
         });
 
         // Add animation on scroll
